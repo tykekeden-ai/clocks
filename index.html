@@ -103,8 +103,30 @@
     <button id="timer-pause">⏸ 一時停止</button>
     <button id="timer-reset">🔄 リセット</button>
 </section>
+    <section id="alarm">
+    <h2>🔔 アラーム</h2>
+
+    <div id="alarm-display">未設定</div>
+
+    <button id="alarm-settings">⚙️ 設定</button>
+
+    <div id="alarm-setting-panel" hidden>
+        <p>アラーム時刻を選択してください</p>
+
+        <div class="alarm-time">
+            <select id="alarm-hours"></select>
+            <span>:</span>
+            <select id="alarm-minutes"></select>
+        </div>
+
+        <button id="alarm-confirm">決定</button>
+    </div>
+
+    <button id="alarm-cancel">🔕 解除</button>
+</section>
 <script src="js/clock.js"></script>
 <script src="js/worldtime.js"></script>
 <script src="js/timer.js"></script>
+<script src="js/alarm.js"></script>
 </body>
 </html>
