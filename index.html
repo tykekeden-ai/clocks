@@ -10,8 +10,33 @@
     <h1>時計</h1>
 
     <div id="clock">00:00:00</div>
+<section id="world-time">
+    <h2>🌍 ワールドタイム</h2>
 
-    <script src="js/clock.js"></script>
+    <div id="world-clocks"></div>
+
+    <button id="more-world-time">＋ もっと表示</button>
+
+    <div id="city-selector" hidden>
+        <h3>都市を選択</h3>
+        <select id="city-select">
+            <option value="">都市を選択してください</option>
+            <option value="Europe/Paris">パリ</option>
+            <option value="Asia/Shanghai">北京</option>
+            <option value="Asia/Singapore">シンガポール</option>
+            <option value="Australia/Sydney">シドニー</option>
+            <option value="Asia/Dubai">ドバイ</option>
+            <option value="America/Los_Angeles">ロサンゼルス</option>
+            <option value="Asia/Seoul">ソウル</option>
+            <option value="Asia/Kolkata">ニューデリー</option>
+        </select>
+
+        <button id="add-city">追加</button>
+    </div>
+</section>
+
+<script src="js/clock.js"></script>
+<script src="js/worldtime.js"></script>
 
 </body>
 </html>
