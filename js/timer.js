@@ -10,19 +10,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const secondsInput = document.getElementById("timer-seconds");
     const settingPanel = document.getElementById("timer-setting-panel");
 
-    // 分・秒を作る
-    for (let i = 0; i <= 59; i++) {
+    //タイマーを作る
+for (let i = 0; i <= 99; i++) {
+    const hour = document.createElement("option");
+    hour.value = i;
+    hour.textContent = String(i).padStart(2, "0");
+    hoursInput.appendChild(hour);
+}
 
-        const minute = document.createElement("option");
-        minute.value = i;
-        minute.textContent = String(i).padStart(2, "0");
-        minutesInput.appendChild(minute);
+for (let i = 0; i <= 59; i++) {
+    const minute = document.createElement("option");
+    minute.value = i;
+    minute.textContent = String(i).padStart(2, "0");
+    minutesInput.appendChild(minute);
 
-        const second = document.createElement("option");
-        second.value = i;
-        second.textContent = String(i).padStart(2, "0");
-        secondsInput.appendChild(second);
-    }
+    const second = document.createElement("option");
+    second.value = i;
+    second.textContent = String(i).padStart(2, "0");
+    secondsInput.appendChild(second);
+}    
 
 
     // 表示更新
