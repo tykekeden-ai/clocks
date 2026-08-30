@@ -1,117 +1,127 @@
-let timerRemaining = 0;
-let timerInterval = null;
-let timerRunning = false;
+document.addEventListener("DOMContentLoaded", () => {
 
-const display = document.getElementById("timer-display");
-const hoursInput = document.getElementById("timer-hours");
-const minutesInput = document.getElementById("timer-minutes");
-const secondsInput = document.getElementById("timer-seconds");
-const settingPanel = document.getElementById("timer-setting-panel");
+    let timerRemaining = 0;
+    let timerInterval = null;
+    let timerRunning = false;
 
+    const display = document.getElementById("timer-display");
+    const hoursInput = document.getElementById("timer-hours");
+    const minutesInput = document.getElementById("timer-minutes");
+    const secondsInput = document.getElementById("timer-seconds");
+    const settingPanel = document.getElementById("timer-setting-panel");
 
-// 分・秒を作る
-for (let i = 0; i <= 59; i++) {
-    const minute = document.createElement("option");
-    minute.value = i;
-    minute.textContent = String(i).padStart(2, "0");
-    minutesInput.appendChild(minute);
+    // 分・秒を作る
+    for (let i = 0; i <= 59; i++) {
 
-    const second = document.createElement("option");
-    second.value = i;
-    second.textContent = String(i).padStart(2, "0");
-    secondsInput.appendChild(second);
-}
+        const minute = document.createElement("option");
+        minute.value = i;
+        minute.textContent = String(i).padStart(2, "0");
+        minutesInput.appendChild(minute);
 
-
-// タイマー表示
-function updateTimerDisplay() {
-    const h = Math.floor(timerRemaining / 3600);
-    const m = Math.floor((timerRemaining % 3600) / 60);
-    const s = timerRemaining % 60;
-
-    display.textContent =
-        String(h).padStart(2, "0") + ":" +
-        String(m).padStart(2, "0") + ":" +
-        String(s).padStart(2, "0");
-}
-
-
-// ⚙️ 設定
-document.getElementById("timer-settings").addEventListener("click", function () {
-    settingPanel.hidden = !settingPanel.hidden;
-});
-
-
-// 決定
-document.getElementById("timer-confirm").addEventListener("click", function () {
-
-    const h = Number(hoursInput.value);
-    const m = Number(minutesInput.value);
-    const s = Number(secondsInput.value);
-
-    timerRemaining = h * 3600 + m * 60 + s;
-
-    if (timerRemaining === 0) {
-        alert("時間を設定してください");
-        return;
+        const second = document.createElement("option");
+        second.value = i;
+        second.textContent = String(i).padStart(2, "0");
+        secondsInput.appendChild(second);
     }
 
-    updateTimerDisplay();
-    settingPanel.hidden = true;
-});
 
+    // 表示更新
+    function updateTimerDisplay() {
 
-// ▶ スタート
-document.getElementById("timer-start").addEventListener("click", function () {
+        const h = Math.floor(timerRemaining / 3600);
+        const m = Math.floor((timerRemaining % 3600) / 60);
+        const s = timerRemaining % 60;
 
-    if (timerRunning) return;
-
-    if (timerRemaining <= 0) {
-        alert("先に時間を設定してください");
-        return;
+        display.textContent =
+            String(h).padStart(2, "0") + ":" +
+            String(m).padStart(2, "0") + ":" +
+            String(s).padStart(2, "0");
     }
 
-    timerRunning = true;
 
-    timerInterval = setInterval(function () {
+    // ⚙️ 設定
+    document.getElementById("timer-settings").onclick = () => {
 
-        timerRemaining--;
-        updateTimerDisplay();
+        settingPanel.hidden = !settingPanel.hidden;
 
-        if (timerRemaining <= 0) {
+    };
 
-            clearInterval(timerInterval);
-            timerInterval = null;
-            timerRunning = false;
 
-            alert("⏰ タイマー終了！");
+    // 決定
+    document.getElementById("timer-confirm").onclick = () => {
+
+        const h = Number(hoursInput.value);
+        const m = Number(minutesInput.value);
+        const s = Number(secondsInput.value);
+
+        timerRemaining = h * 3600 + m * 60 + s;
+
+        if (timerRemaining === 0) {
+            alert("時間を設定してください");
+            return;
         }
 
-    }, 1000);
-});
+        updateTimerDisplay();
+
+        settingPanel.hidden = true;
+    };
 
 
-// ⏸ 一時停止
-document.getElementById("timer-pause").addEventListener("click", function () {
+    // ▶ スタート
+    document.getElementById("timer-start").onclick = () => {
 
-    clearInterval(timerInterval);
-    timerInterval = null;
-    timerRunning = false;
+        if (timerRunning) return;
 
-});
+        if (timerRemaining <= 0) {
+            alert("先に時間を設定してください");
+            return;
+        }
+
+        timerRunning = true;
+
+        timerInterval = setInterval(() => {
+
+            timerRemaining--;
+
+            updateTimerDisplay();
+
+            if (timerRemaining <= 0) {
+
+                clearInterval(timerInterval);
+                timerInterval = null;
+                timerRunning = false;
+
+                alert("⏰ タイマー終了！");
+            }
+
+        }, 1000);
+    };
 
 
-// 🔄 リセット
-document.getElementById("timer-reset").addEventListener("click", function () {
+    // ⏸ 一時停止
+    document.getElementById("timer-pause").onclick = () => {
 
-    clearInterval(timerInterval);
-    timerInterval = null;
-    timerRunning = false;
+        clearInterval(timerInterval);
 
-    timerRemaining = 0;
+        timerInterval = null;
+        timerRunning = false;
+    };
+
+
+    // 🔄 リセット
+    document.getElementById("timer-reset").onclick = () => {
+
+        clearInterval(timerInterval);
+
+        timerInterval = null;
+        timerRunning = false;
+
+        timerRemaining = 0;
+
+        updateTimerDisplay();
+    };
+
+
     updateTimerDisplay();
 
 });
-
-
-updateTimerDisplay();
