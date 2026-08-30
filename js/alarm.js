@@ -128,3 +128,5 @@ setInterval(() => {
     }
 
 }, 1000);
+console.log("alarm.js 読み込み成功");
+alert("alarm.js 動いてる！");
