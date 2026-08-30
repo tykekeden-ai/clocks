@@ -34,7 +34,33 @@
         <button id="add-city">追加</button>
     </div>
 </section>
+<section id="timer">
+    <h2>⏱️ タイマー</h2>
 
+    <div id="timer-display">00:00:00</div>
+
+    <button id="timer-settings">⚙️ 設定</button>
+
+    <div id="timer-setting-panel" hidden>
+        <p>時間を設定してください</p>
+
+        <input id="timer-hours" type="number" min="0" value="0"> 時間
+        <input id="timer-minutes" type="number" min="0" max="59" value="0"> 分
+        <input id="timer-seconds" type="number" min="0" max="59" value="0"> 秒
+
+        <br>
+
+        <button id="timer-confirm">決定</button>
+    </div>
+
+    <br>
+
+    <button id="timer-start">▶ スタート</button>
+    <button id="timer-pause">⏸ 一時停止</button>
+    <button id="timer-reset">🔄 リセット</button>
+</section>
+
+<script src="js/timer.js"></script>
 <script src="js/clock.js"></script>
 <script src="js/worldtime.js"></script>
 
