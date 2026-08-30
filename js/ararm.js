@@ -1,4 +1,4 @@
-alert("alarm.js 読み込み成功！");
+alert("alarm.js 動作しました！");
 const button = document.getElementById("alarm-settings");
 const panel = document.getElementById("alarm-setting-panel");
 
