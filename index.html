@@ -3,6 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>時計</title>
+    <style>
+.timer-wheels {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.timer-wheels select {
+    width: 55px;
+    height: 38px;
+    font-size: 18px;
+}
+
+.timer-wheels > div {
+    text-align: center;
+}
+
+.timer-wheels > div > div {
+    font-size: 12px;
+}
+</style>
 </head>
 
 <body>
@@ -46,7 +68,7 @@
 
         <div class="timer-wheels">
             <div>
-                <select id="timer-hours" size="5">
+                <select id="timer-hours">
                     <option value="0">00</option>
                     <option value="1">01</option>
                     <option value="2">02</option>
@@ -154,7 +176,7 @@
             <div>:</div>
 
             <div>
-                <select id="timer-minutes" size="5">
+                <select id="timer-minutes">
                     <!-- 0～59 -->
                 </select>
                 <div>分</div>
@@ -163,7 +185,7 @@
             <div>:</div>
 
             <div>
-                <select id="timer-seconds" size="5">
+                <select id="timer-seconds">
                     <!-- 0～59 -->
                 </select>
                 <div>秒</div>
