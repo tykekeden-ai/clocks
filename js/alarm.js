@@ -1,6 +1,7 @@
 let alarmTime = null;
 let alarmTriggered = false;
 
+// 要素を取得
 const display = document.getElementById("alarm-display");
 const panel = document.getElementById("alarm-setting-panel");
 
@@ -11,16 +12,16 @@ const settingsButton = document.getElementById("alarm-settings");
 const confirmButton = document.getElementById("alarm-confirm");
 const cancelButton = document.getElementById("alarm-cancel");
 
-// 🔔 アラーム音
+// 🔔 GitHub Pages上の音声
 const alarmSound = new Audio("sounds/alarm.mp3");
 
-// 繰り返し再生
+alarmSound.preload = "auto";
 alarmSound.loop = true;
 
 
-// ========================
+// =========================
 // 時間 00～23
-// ========================
+// =========================
 
 for (let i = 0; i <= 23; i++) {
     const option = document.createElement("option");
@@ -32,9 +33,9 @@ for (let i = 0; i <= 23; i++) {
 }
 
 
-// ========================
+// =========================
 // 分 00～59
-// ========================
+// =========================
 
 for (let i = 0; i <= 59; i++) {
     const option = document.createElement("option");
@@ -46,18 +47,18 @@ for (let i = 0; i <= 59; i++) {
 }
 
 
-// ========================
-// ⚙️ 設定
-// ========================
+// =========================
+// ⚙️ 設定ボタン
+// =========================
 
 settingsButton.addEventListener("click", () => {
     panel.hidden = !panel.hidden;
 });
 
 
-// ========================
+// =========================
 // ✅ 決定
-// ========================
+// =========================
 
 confirmButton.addEventListener("click", () => {
 
@@ -70,7 +71,7 @@ confirmButton.addEventListener("click", () => {
 
     alarmTriggered = false;
 
-    // 前のアラーム音を停止
+    // 前の音を停止
     alarmSound.pause();
     alarmSound.currentTime = 0;
 
@@ -80,9 +81,9 @@ confirmButton.addEventListener("click", () => {
 });
 
 
-// ========================
+// =========================
 // 🔕 解除
-// ========================
+// =========================
 
 cancelButton.addEventListener("click", () => {
 
@@ -96,12 +97,13 @@ cancelButton.addEventListener("click", () => {
 });
 
 
-// ========================
-// 🔔 毎秒チェック
-// ========================
+// =========================
+// 🔔 アラームチェック
+// =========================
 
 setInterval(() => {
 
+    // アラームが設定されていない
     if (!alarmTime || alarmTriggered) {
         return;
     }
@@ -109,24 +111,30 @@ setInterval(() => {
     const now = new Date();
 
     const currentTime =
-        String(now.getHours()).padStart(2, "0") + ":" +
+        String(now.getHours()).padStart(2, "0") +
+        ":" +
         String(now.getMinutes()).padStart(2, "0");
 
 
+    // 設定時刻になった
     if (currentTime === alarmTime) {
 
         alarmTriggered = true;
 
-        // 🔔 音を鳴らす
+        display.textContent = "🔔 アラーム作動中";
+
+        // 🔊 音を鳴らす
         alarmSound.currentTime = 0;
 
-        alarmSound.play().catch(error => {
-            console.log("アラーム音を再生できませんでした:", error);
-        });
+        alarmSound.play()
+            .then(() => {
+                console.log("🔔 アラーム音再生成功");
+            })
+            .catch((error) => {
+                console.error("🔇 アラーム音再生失敗:", error);
+            });
 
         alert("🔔 アラーム！");
     }
 
 }, 1000);
-console.log("alarm.js 読み込み成功");
-alert("alarm.js 動いてる！");
