@@ -1,5 +1,5 @@
 let alarmTime = null;
-let lastTriggeredDate = null;
+let alarmTriggered = false;
 
 const display = document.getElementById("alarm-display");
 const panel = document.getElementById("alarm-setting-panel");
@@ -10,20 +10,18 @@ const minutes = document.getElementById("alarm-minutes");
 const settingsButton = document.getElementById("alarm-settings");
 const confirmButton = document.getElementById("alarm-confirm");
 const cancelButton = document.getElementById("alarm-cancel");
-const stopButton = document.getElementById("alarm-stop");
 
 // 🔔 アラーム音
 const alarmSound = new Audio("sounds/alarm.mp3");
 
-// 音声を繰り返す
+// 繰り返し再生
 alarmSound.loop = true;
 
 
-// =========================
-// 時・分の選択肢を作る
-// =========================
-
+// ========================
 // 時間 00～23
+// ========================
+
 for (let i = 0; i <= 23; i++) {
     const option = document.createElement("option");
 
@@ -34,7 +32,10 @@ for (let i = 0; i <= 23; i++) {
 }
 
 
+// ========================
 // 分 00～59
+// ========================
+
 for (let i = 0; i <= 59; i++) {
     const option = document.createElement("option");
 
@@ -45,43 +46,21 @@ for (let i = 0; i <= 59; i++) {
 }
 
 
-// =========================
-// 日付を YYYY-MM-DD 形式で取得
-// =========================
-
-function getDateKey(date) {
-    return [
-        date.getFullYear(),
-        String(date.getMonth() + 1).padStart(2, "0"),
-        String(date.getDate()).padStart(2, "0")
-    ].join("-");
-}
-
-
-// =========================
-// 🔊 アラーム音を停止
-// =========================
-
-function stopAlarmSound() {
-    alarmSound.pause();
-    alarmSound.currentTime = 0;
-}
-
-
-// =========================
+// ========================
 // ⚙️ 設定
-// =========================
+// ========================
 
 settingsButton.addEventListener("click", () => {
     panel.hidden = !panel.hidden;
 });
 
 
-// =========================
+// ========================
 // ✅ 決定
-// =========================
+// ========================
 
 confirmButton.addEventListener("click", () => {
+
     const h = Number(hours.value);
     const m = Number(minutes.value);
 
@@ -89,11 +68,11 @@ confirmButton.addEventListener("click", () => {
         String(h).padStart(2, "0") + ":" +
         String(m).padStart(2, "0");
 
-    // 新しい設定として、鳴動済みの日付をリセット
-    lastTriggeredDate = null;
+    alarmTriggered = false;
 
-    // 念のため音を停止
-    stopAlarmSound();
+    // 前のアラーム音を停止
+    alarmSound.pause();
+    alarmSound.currentTime = 0;
 
     display.textContent = "設定: " + alarmTime;
 
@@ -101,40 +80,29 @@ confirmButton.addEventListener("click", () => {
 });
 
 
-// =========================
-// 🔕 アラーム設定を解除
-// =========================
+// ========================
+// 🔕 解除
+// ========================
 
 cancelButton.addEventListener("click", () => {
-    alarmTime = null;
-    lastTriggeredDate = null;
 
-    stopAlarmSound();
+    alarmTime = null;
+    alarmTriggered = false;
+
+    alarmSound.pause();
+    alarmSound.currentTime = 0;
 
     display.textContent = "未設定";
 });
 
 
-// =========================
-// 🔇 アラーム音を停止
-// =========================
-
-stopButton.addEventListener("click", () => {
-    stopAlarmSound();
-
-    display.textContent = alarmTime
-        ? "設定: " + alarmTime
-        : "未設定";
-});
-
-
-// =========================
-// 🔔 アラーム監視
-// =========================
+// ========================
+// 🔔 毎秒チェック
+// ========================
 
 setInterval(() => {
-    // アラーム未設定なら何もしない
-    if (!alarmTime) {
+
+    if (!alarmTime || alarmTriggered) {
         return;
     }
 
@@ -144,24 +112,19 @@ setInterval(() => {
         String(now.getHours()).padStart(2, "0") + ":" +
         String(now.getMinutes()).padStart(2, "0");
 
-    const currentDate = getDateKey(now);
 
-    // 当日すでに鳴動済みなら何もしない
-    if (lastTriggeredDate === currentDate) {
-        return;
-    }
-
-    // 設定時刻になった
     if (currentTime === alarmTime) {
-        // 鳴動した日付を記録する
-        lastTriggeredDate = currentDate;
+
+        alarmTriggered = true;
 
         // 🔔 音を鳴らす
         alarmSound.currentTime = 0;
+
         alarmSound.play().catch(error => {
-            console.log("音声を再生できませんでした:", error);
+            console.log("アラーム音を再生できませんでした:", error);
         });
 
-        display.textContent = "🔔 アラーム鳴動中";
+        alert("🔔 アラーム！");
     }
+
 }, 1000);
