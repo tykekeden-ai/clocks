@@ -2,7 +2,7 @@
 // 🌦️ OpenWeather 接続テスト
 // =========================
 // APIキー
-const API_KEY = "bb6ff605af6210f81b7d80ebd595b1f0;
+const API_KEY = ";
 // テスト場所：岐阜
 const CITY = "Gifu";
 const COUNTRY = "JP";
