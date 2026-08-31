@@ -20,8 +20,9 @@ const cancelButton =
 // =========================
 // 🔔 アラーム音
 // =========================
-const alarmSound =
-    new Audio("sounds/alarm.mp3");
+const timerSound = new Audio(
+    "https://tykekeden-ai.github.io/clocks/sounds/alarm.mp3"
+);
 alarmSound.preload = "auto";
 alarmSound.loop = true;
 // =========================
