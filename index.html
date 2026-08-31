@@ -242,37 +242,34 @@
 
     </section>
 
-
-    <!-- =========================
-         ⏱️ ストップウォッチ
-    ========================= -->
-
-    <section id="stopwatch">
-
-        <h2>⏱️ ストップウォッチ</h2>
-
-        <div id="stopwatch-display">
-            00:00:00.00
-        </div>
-
-        <div id="stopwatch-controls">
-
-            <button id="stopwatch-start">
-                ▶ スタート
-            </button>
-
-            <button id="stopwatch-stop">
-                ⏸ ストップ
-            </button>
-
-            <button id="stopwatch-reset">
-                🔄 リセット
-            </button>
-
-        </div>
-
-    </section>
-
+<!-- =========================
+     ⏱️ ストップウォッチ
+========================= -->
+<section id="stopwatch">
+    <h2>⏱️ ストップウォッチ</h2>
+    <div id="stopwatch-display">
+        00:00:00.00
+    </div>
+    <div id="stopwatch-controls">
+        <button id="stopwatch-start">
+            ▶ スタート
+        </button>
+        <button id="stopwatch-stop">
+            ⏸ ストップ
+        </button>
+        <button id="stopwatch-lap">
+            🏁 ラップ
+        </button>
+        <button id="stopwatch-reset">
+            🔄 リセット
+        </button>
+    </div>
+    <!-- ラップタイム -->
+    <div id="stopwatch-laps">
+        <h3>ラップタイム</h3>
+        <ol id="stopwatch-lap-list"></ol>
+    </div>
+</section>
 
     <!-- =========================
          JavaScript
