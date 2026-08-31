@@ -1,7 +1,10 @@
 let alarmTime = null;
 let alarmTriggered = false;
 
+// =========================
 // 要素を取得
+// =========================
+
 const display = document.getElementById("alarm-display");
 const panel = document.getElementById("alarm-setting-panel");
 
@@ -12,8 +15,14 @@ const settingsButton = document.getElementById("alarm-settings");
 const confirmButton = document.getElementById("alarm-confirm");
 const cancelButton = document.getElementById("alarm-cancel");
 
-// 🔔 GitHub Pages上の音声
-const alarmSound = new Audio("sounds/alarm.mp3");
+// =========================
+// 🔔 アラーム音
+// =========================
+
+// GitHub Pages上の実際のファイル
+const alarmSound = new Audio(
+    "https://tykekeden-ai.github.io/clocks/sounds/alarm.mp3"
+);
 
 alarmSound.preload = "auto";
 alarmSound.loop = true;
@@ -48,7 +57,7 @@ for (let i = 0; i <= 59; i++) {
 
 
 // =========================
-// ⚙️ 設定ボタン
+// ⚙️ 設定
 // =========================
 
 settingsButton.addEventListener("click", () => {
@@ -103,7 +112,6 @@ cancelButton.addEventListener("click", () => {
 
 setInterval(() => {
 
-    // アラームが設定されていない
     if (!alarmTime || alarmTriggered) {
         return;
     }
@@ -116,25 +124,36 @@ setInterval(() => {
         String(now.getMinutes()).padStart(2, "0");
 
 
-    // 設定時刻になった
     if (currentTime === alarmTime) {
 
         alarmTriggered = true;
 
         display.textContent = "🔔 アラーム作動中";
 
-        // 🔊 音を鳴らす
+        // 🔊 音声を再生
         alarmSound.currentTime = 0;
 
-        alarmSound.play()
-            .then(() => {
-                console.log("🔔 アラーム音再生成功");
-            })
-            .catch((error) => {
-                console.error("🔇 アラーム音再生失敗:", error);
-            });
+        const playPromise = alarmSound.play();
 
-        alert("🔔 アラーム！");
+        if (playPromise !== undefined) {
+
+            playPromise
+                .then(() => {
+                    console.log("🔔 アラーム音再生成功");
+                })
+                .catch((error) => {
+                    console.error(
+                        "🔇 アラーム音再生失敗:",
+                        error
+                    );
+                });
+        }
+
+        // 少し遅らせて通知
+        setTimeout(() => {
+            alert("🔔 アラーム！");
+        }, 100);
+
     }
 
 }, 1000);
