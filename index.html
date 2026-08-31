@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>時計</title>
+
 <style>
 .timer-wheels {
     display: flex !important;
@@ -32,101 +33,256 @@
     font-size: 20px;
     margin-bottom: 18px;
 }
+
+
+/* =========================
+   ⏱️ ストップウォッチ
+========================= */
+
+#stopwatch {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#stopwatch-display {
+    font-size: 48px;
+    font-family: monospace;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 15px 0;
+}
+
+#stopwatch-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#stopwatch-controls button {
+    font-size: 16px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
 </style>
+
 </head>
+
 <body>
 
     <h1>時計</h1>
 
     <div id="clock">00:00:00</div>
-<section id="world-time">
-    <h2>🌍 ワールドタイム</h2>
 
-    <div id="world-clocks"></div>
 
-    <button id="more-world-time">＋ もっと表示</button>
+    <!-- =========================
+         🌍 ワールドタイム
+    ========================= -->
 
-    <div id="city-selector" hidden>
-        <h3>都市を選択</h3>
-        <select id="city-select">
-            <option value="">都市を選択してください</option>
-            <option value="Europe/Paris">パリ</option>
-            <option value="Asia/Shanghai">北京</option>
-            <option value="Asia/Singapore">シンガポール</option>
-            <option value="Australia/Sydney">シドニー</option>
-            <option value="Asia/Dubai">ドバイ</option>
-            <option value="America/Los_Angeles">ロサンゼルス</option>
-            <option value="Asia/Seoul">ソウル</option>
-            <option value="Asia/Kolkata">ニューデリー</option>
-        </select>
+    <section id="world-time">
 
-        <button id="add-city">追加</button>
-    </div>
-</section>
-<section id="timer">
-    <h2>⏱️ タイマー</h2>
+        <h2>🌍 ワールドタイム</h2>
 
-    <div id="timer-display">00:00:00</div>
+        <div id="world-clocks"></div>
 
-    <button id="timer-settings">⚙️ 設定</button>
+        <button id="more-world-time">＋ もっと表示</button>
 
-    <div id="timer-setting-panel" hidden>
-        <p>時間を選択してください</p>
-      <div class="timer-wheels">
+        <div id="city-selector" hidden>
 
-    <div class="timer-unit">
-        <select id="timer-hours"></select>
-        <span>時間</span>
-    </div>
+            <h3>都市を選択</h3>
 
-    <span class="timer-colon">:</span>
+            <select id="city-select">
 
-    <div class="timer-unit">
-        <select id="timer-minutes"></select>
-        <span>分</span>
-    </div>
+                <option value="">
+                    都市を選択してください
+                </option>
 
-    <span class="timer-colon">:</span>
+                <option value="Europe/Paris">
+                    パリ
+                </option>
 
-    <div class="timer-unit">
-        <select id="timer-seconds"></select>
-        <span>秒</span>
-    </div>
+                <option value="Asia/Shanghai">
+                    北京
+                </option>
 
-</div>  
-        <button id="timer-confirm">決定</button>
-    </div>
+                <option value="Asia/Singapore">
+                    シンガポール
+                </option>
 
-    <br>
+                <option value="Australia/Sydney">
+                    シドニー
+                </option>
 
-    <button id="timer-start">▶ スタート</button>
-    <button id="timer-pause">⏸ 一時停止</button>
-    <button id="timer-reset">🔄 リセット</button>
+                <option value="Asia/Dubai">
+                    ドバイ
+                </option>
+
+                <option value="America/Los_Angeles">
+                    ロサンゼルス
+                </option>
+
+                <option value="Asia/Seoul">
+                    ソウル
+                </option>
+
+                <option value="Asia/Kolkata">
+                    ニューデリー
+                </option>
+
+            </select>
+
+            <button id="add-city">追加</button>
+
+        </div>
+
     </section>
-    <section id="alarm">
-    <h2>🔔 アラーム</h2>
 
-    <div id="alarm-display">未設定</div>
 
-    <button id="alarm-settings">⚙️ 設定</button>
+    <!-- =========================
+         ⏱️ タイマー
+    ========================= -->
 
-    <div id="alarm-setting-panel" hidden>
-        <p>アラーム時刻を選択してください</p>
+    <section id="timer">
 
-        <select id="alarm-hours"></select>
-        :
-        <select id="alarm-minutes"></select>
+        <h2>⏱️ タイマー</h2>
+
+        <div id="timer-display">
+            00:00:00
+        </div>
+
+        <button id="timer-settings">
+            ⚙️ 設定
+        </button>
+
+        <div id="timer-setting-panel" hidden>
+
+            <p>時間を選択してください</p>
+
+            <div class="timer-wheels">
+
+                <div class="timer-unit">
+                    <select id="timer-hours"></select>
+                    <span>時間</span>
+                </div>
+
+                <span class="timer-colon">:</span>
+
+                <div class="timer-unit">
+                    <select id="timer-minutes"></select>
+                    <span>分</span>
+                </div>
+
+                <span class="timer-colon">:</span>
+
+                <div class="timer-unit">
+                    <select id="timer-seconds"></select>
+                    <span>秒</span>
+                </div>
+
+            </div>
+
+            <button id="timer-confirm">
+                決定
+            </button>
+
+        </div>
 
         <br>
 
-        <button id="alarm-confirm">決定</button>
-    </div>
+        <button id="timer-start">
+            ▶ スタート
+        </button>
 
-    <button id="alarm-cancel">🔕 解除</button>
-</section>
-<script src="js/clock.js"></script>
-<script src="js/worldtime.js"></script>
-<script src="js/timer.js"></script>
-<script src="js/alarm.js"></script>
+        <button id="timer-pause">
+            ⏸ 一時停止
+        </button>
+
+        <button id="timer-reset">
+            🔄 リセット
+        </button>
+
+    </section>
+
+
+    <!-- =========================
+         🔔 アラーム
+    ========================= -->
+
+    <section id="alarm">
+
+        <h2>🔔 アラーム</h2>
+
+        <div id="alarm-display">
+            未設定
+        </div>
+
+        <button id="alarm-settings">
+            ⚙️ 設定
+        </button>
+
+        <div id="alarm-setting-panel" hidden>
+
+            <p>アラーム時刻を選択してください</p>
+
+            <select id="alarm-hours"></select>
+            :
+            <select id="alarm-minutes"></select>
+
+            <br>
+
+            <button id="alarm-confirm">
+                決定
+            </button>
+
+        </div>
+
+        <button id="alarm-cancel">
+            🔕 解除
+        </button>
+
+    </section>
+
+
+    <!-- =========================
+         ⏱️ ストップウォッチ
+    ========================= -->
+
+    <section id="stopwatch">
+
+        <h2>⏱️ ストップウォッチ</h2>
+
+        <div id="stopwatch-display">
+            00:00:00.00
+        </div>
+
+        <div id="stopwatch-controls">
+
+            <button id="stopwatch-start">
+                ▶ スタート
+            </button>
+
+            <button id="stopwatch-stop">
+                ⏸ ストップ
+            </button>
+
+            <button id="stopwatch-reset">
+                🔄 リセット
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         JavaScript
+    ========================= -->
+
+    <script src="js/clock.js"></script>
+    <script src="js/worldtime.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/alarm.js"></script>
+    <script src="js/stopwatch.js"></script>
+
 </body>
 </html>
