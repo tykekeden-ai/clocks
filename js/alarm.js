@@ -18,41 +18,6 @@ const confirmButton =
 const cancelButton =
     document.getElementById("alarm-cancel");
 // =========================
-// 🔔 アラーム音
-// =========================
-const timerSound = new Audio(
-    "https://tykekeden-ai.github.io/clocks/sounds/alarm.mp3"
-);
-alarmSound.preload = "auto";
-alarmSound.loop = true;
-// =========================
-// 🔊 音声を準備
-// =========================
-function prepareAlarmSound() {
-    alarmSound.currentTime = 0;
-    alarmSound.play()
-        .then(() => {
-            alarmSound.pause();
-            alarmSound.currentTime = 0;
-            console.log(
-                "🔊 アラーム音声準備完了"
-            );
-        })
-        .catch(error => {
-            console.error(
-                "🔇 アラーム音声準備失敗:",
-                error
-            );
-        });
-}
-// =========================
-// 🔇 音声停止
-// =========================
-function stopAlarmSound() {
-    alarmSound.pause();
-    alarmSound.currentTime = 0;
-}
-// =========================
 // 時間 00～23
 // =========================
 for (let i = 0; i <= 23; i++) {
@@ -78,7 +43,8 @@ for (let i = 0; i <= 59; i++) {
 // ⚙️ 設定
 // =========================
 settingsButton.addEventListener("click", () => {
-    panel.hidden = !panel.hidden;
+    panel.hidden =
+        !panel.hidden;
 });
 // =========================
 // ✅ 決定
@@ -91,12 +57,12 @@ confirmButton.addEventListener("click", () => {
         ":" +
         String(m).padStart(2, "0");
     alarmTriggered = false;
-    stopAlarmSound();
+    stopSysSound();
     display.textContent =
         "設定: " + alarmTime;
     panel.hidden = true;
-    // ユーザー操作中に音声を準備
-    prepareAlarmSound();
+    // 音声を準備
+    prepareSysSound();
 });
 // =========================
 // 🔕 解除
@@ -104,8 +70,9 @@ confirmButton.addEventListener("click", () => {
 cancelButton.addEventListener("click", () => {
     alarmTime = null;
     alarmTriggered = false;
-    stopAlarmSound();
-    display.textContent = "未設定";
+    stopSysSound();
+    display.textContent =
+        "未設定";
 });
 // =========================
 // 🔔 アラームチェック
@@ -123,17 +90,16 @@ setInterval(() => {
         alarmTriggered = true;
         display.textContent =
             "🔔 アラーム作動中";
-        alarmSound.currentTime = 0;
-        alarmSound.play()
+        // SYS Soundを再生
+        playSysSound()
             .then(() => {
                 console.log(
-                    "🔔 アラーム音再生成功"
+                    "🔔 アラーム通知"
                 );
             })
-            .catch(error => {
+            .catch(() => {
                 console.error(
-                    "🔇 アラーム音再生失敗:",
-                    error
+                    "🔇 アラーム音を再生できませんでした"
                 );
             });
         alert("🔔 アラーム！");
