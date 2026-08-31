@@ -41,7 +41,9 @@ const timerReset =
 // 🔔 タイマー終了音
 // =========================
 
-const timerSound = new Audio("sounds/alarm.mp3");
+const timerSound = new Audio(
+    "https://tykekeden-ai.github.io/clocks/sounds/alarm.mp3"
+);
 
 timerSound.preload = "auto";
 timerSound.loop = true;
