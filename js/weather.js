@@ -101,7 +101,19 @@
     hourlyContainerEl.innerHTML = '';
 
     try {
-      const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}&count=1&language=ja`;
+      const cityAliases = {
+  "東京": "東京都",
+  "大阪": "大阪市",
+  "名古屋": "名古屋市",
+  "京都": "京都市",
+  "札幌": "札幌市",
+  "福岡": "福岡市"
+};
+
+const searchName = cityAliases[cityName] || cityName;
+
+const geoUrl =
+  `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(searchName)}&count=1&language=ja&countryCode=JP`;
       const geoRes = await fetch(geoUrl);
       const geoData = await geoRes.json();
 
