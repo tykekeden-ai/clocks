@@ -240,3 +240,248 @@ body[data-theme="luxury"] button {
     background: linear-gradient(145deg, #655027, #292015);
     border-color: #c9a64e;
 }
+/* ==================================
+   ⌚ 時計モード切り替え
+================================== */
+
+#clock-mode-selector {
+    text-align: center;
+    margin: 15px auto;
+    color: #ffe9ad;
+}
+
+#clock-mode {
+    padding: 9px 14px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* 時計表示エリア */
+
+#clock-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin: 20px auto;
+}
+
+/* アナログ時計の文字盤 */
+
+.analog-clock {
+    display: none;
+    position: relative;
+
+    width: min(75vw, 280px);
+    aspect-ratio: 1 / 1;
+
+    border-radius: 50%;
+    border: 10px solid #80552f;
+
+    background:
+        radial-gradient(circle, #fff7e7, #e8d5b4);
+
+    box-shadow:
+        inset 0 0 0 3px #c5a16e,
+        inset 0 0 15px rgba(80, 50, 20, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* 文字盤の数字 */
+
+.clock-number {
+    position: absolute;
+    color: #49301f;
+    font-size: 22px;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+}
+
+.number-12 {
+    top: 12%;
+    left: 50%;
+}
+
+.number-3 {
+    top: 50%;
+    left: 88%;
+}
+
+.number-6 {
+    top: 88%;
+    left: 50%;
+}
+
+.number-9 {
+    top: 50%;
+    left: 12%;
+}
+
+/* 時計の針 */
+
+.clock-hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom center;
+    border-radius: 10px;
+}
+
+.hour-hand {
+    width: 7px;
+    height: 25%;
+    background: #49301f;
+    z-index: 2;
+}
+
+.minute-hand {
+    width: 5px;
+    height: 36%;
+    background: #76502e;
+    z-index: 3;
+}
+
+.second-hand {
+    width: 2px;
+    height: 40%;
+    background: #bd4936;
+    z-index: 4;
+}
+
+/* 中央の軸 */
+
+.clock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #49301f;
+    border: 2px solid #d2ad76;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}/* ==================================
+   ⌚ 時計モード切り替え
+================================== */
+
+#clock-mode-selector {
+    text-align: center;
+    margin: 15px auto;
+    color: #ffe9ad;
+}
+
+#clock-mode {
+    padding: 9px 14px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* 時計表示エリア */
+
+#clock-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin: 20px auto;
+}
+
+/* アナログ時計の文字盤 */
+
+.analog-clock {
+    display: none;
+    position: relative;
+
+    width: min(75vw, 280px);
+    aspect-ratio: 1 / 1;
+
+    border-radius: 50%;
+    border: 10px solid #80552f;
+
+    background:
+        radial-gradient(circle, #fff7e7, #e8d5b4);
+
+    box-shadow:
+        inset 0 0 0 3px #c5a16e,
+        inset 0 0 15px rgba(80, 50, 20, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* 文字盤の数字 */
+
+.clock-number {
+    position: absolute;
+    color: #49301f;
+    font-size: 22px;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+}
+
+.number-12 {
+    top: 12%;
+    left: 50%;
+}
+
+.number-3 {
+    top: 50%;
+    left: 88%;
+}
+
+.number-6 {
+    top: 88%;
+    left: 50%;
+}
+
+.number-9 {
+    top: 50%;
+    left: 12%;
+}
+
+/* 時計の針 */
+
+.clock-hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom center;
+    border-radius: 10px;
+}
+
+.hour-hand {
+    width: 7px;
+    height: 25%;
+    background: #49301f;
+    z-index: 2;
+}
+
+.minute-hand {
+    width: 5px;
+    height: 36%;
+    background: #76502e;
+    z-index: 3;
+}
+
+.second-hand {
+    width: 2px;
+    height: 40%;
+    background: #bd4936;
+    z-index: 4;
+}
+
+/* 中央の軸 */
+
+.clock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #49301f;
+    border: 2px solid #d2ad76;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
