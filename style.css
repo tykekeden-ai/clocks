@@ -1,1 +1,242 @@
 
+/* ==================================
+   🌳 木製電子時計・共通デザイン
+================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 25px 18px;
+    min-height: 100vh;
+    color: #f7ead3;
+    font-family: "Hiragino Kaku Gothic ProN",
+                 "Yu Gothic", sans-serif;
+
+    /* 天然木のような木目 */
+    background-color: #51321f;
+    background-image:
+        repeating-linear-gradient(
+            3deg,
+            transparent 0px,
+            rgba(255, 220, 160, 0.035) 3px,
+            transparent 7px,
+            rgba(25, 10, 3, 0.12) 11px
+        ),
+        repeating-linear-gradient(
+            178deg,
+            #69452d 0px,
+            #51321f 35px,
+            #785239 70px,
+            #4b2d1c 105px
+        );
+
+    background-attachment: fixed;
+}
+
+/* タイトル */
+
+h1 {
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 5px;
+    color: #f3d9a9;
+    text-shadow: 0 2px 5px #24150d;
+}
+
+/* 時計本体 */
+
+#clock {
+    max-width: 650px;
+    margin: 25px auto;
+    padding: 35px 15px;
+
+    text-align: center;
+    font-family: monospace;
+    font-size: clamp(42px, 9vw, 75px);
+    font-weight: bold;
+    letter-spacing: 5px;
+
+    color: #ffe9ad;
+    background: linear-gradient(
+        145deg,
+        #211b15,
+        #3b3025,
+        #17130f
+    );
+
+    border: 7px solid #80552f;
+    border-radius: 16px;
+
+    box-shadow:
+        inset 0 0 15px #000,
+        0 8px 18px rgba(0, 0, 0, 0.5),
+        0 0 0 2px #b38a55;
+}
+
+/* 各機能パネル */
+
+section {
+    margin: 22px auto;
+    padding: 20px;
+
+    max-width: 850px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(133, 88, 52, 0.95),
+            rgba(73, 43, 27, 0.97)
+        );
+
+    border: 2px solid #a77b4c;
+    border-radius: 13px;
+
+    box-shadow:
+        inset 0 1px 5px rgba(255, 225, 180, 0.15),
+        0 5px 14px rgba(0, 0, 0, 0.35);
+}
+
+h2 {
+    color: #ffe0a9;
+    border-bottom: 1px solid rgba(255, 220, 170, 0.35);
+    padding-bottom: 9px;
+}
+
+/* ボタン */
+
+button {
+    padding: 9px 15px;
+    margin: 4px;
+
+    color: #fff1d6;
+    background: linear-gradient(
+        145deg,
+        #87603c,
+        #52351f
+    );
+
+    border: 1px solid #c39a65;
+    border-radius: 7px;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    transition: 0.2s;
+}
+
+button:hover {
+    background: linear-gradient(
+        145deg,
+        #a77a4b,
+        #674328
+    );
+    transform: translateY(-1px);
+}
+
+/* 入力・選択欄 */
+
+select,
+input {
+    padding: 7px;
+    color: #fff0d5;
+    background: #30241b;
+    border: 1px solid #a77b4c;
+    border-radius: 5px;
+}
+
+/* タイマー */
+
+#timer-display,
+#alarm-display,
+#stopwatch-display {
+    color: #ffe5ad;
+    font-family: monospace;
+    font-weight: bold;
+    text-align: center;
+    margin: 15px 0;
+}
+
+#timer-display {
+    font-size: 38px;
+}
+
+#alarm-display {
+    font-size: 25px;
+}
+
+#stopwatch-display {
+    font-size: 42px;
+}
+
+/* ワールドタイム */
+
+#world-clocks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* ラップタイム */
+
+#stopwatch-lap-list {
+    color: #f7e5c7;
+}
+
+/* ==================================
+   🎨 テーマ切り替え用の準備
+================================== */
+
+/* シンプルカラー */
+
+body[data-theme="color"] {
+    color: #263342;
+    background: linear-gradient(135deg, #dceeff, #f7fbff);
+}
+
+body[data-theme="color"] section {
+    color: #263342;
+    background: rgba(255, 255, 255, 0.9);
+    border-color: #a8c9e8;
+}
+
+body[data-theme="color"] h1,
+body[data-theme="color"] h2 {
+    color: #315b83;
+}
+
+body[data-theme="color"] button {
+    color: white;
+    background: #4388bd;
+    border-color: #80b5df;
+}
+
+/* ゴージャス */
+
+body[data-theme="luxury"] {
+    color: #f5e7bd;
+    background:
+        radial-gradient(ellipse at top, #48413a, #111 75%);
+}
+
+body[data-theme="luxury"] section {
+    background: linear-gradient(145deg, #292722, #111);
+    border: 1px solid #b99a50;
+    box-shadow:
+        inset 0 0 15px rgba(255, 215, 120, 0.08),
+        0 5px 18px #000;
+}
+
+body[data-theme="luxury"] h1,
+body[data-theme="luxury"] h2 {
+    color: #e9c875;
+}
+
+body[data-theme="luxury"] button {
+    color: #ffe7a7;
+    background: linear-gradient(145deg, #655027, #292015);
+    border-color: #c9a64e;
+}
