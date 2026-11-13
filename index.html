@@ -72,51 +72,6 @@
 
     <h1>時計</h1>
 
-    <!-- 時計の表示方式 -->
-<!-- ⚙️ 設定 -->
-<section id="settings">
-
-    <h2>⚙️ 設定</h2>
-
-    <button id="settings-items">
-        項目変更
-    </button>
-
-    <div id="settings-panel" hidden>
-
-        <!-- 時計の表示方式 -->
-        <h3>⌚ 時計の表示方式</h3>
-
-        <select id="clock-mode">
-            <option value="analog">アナログ</option>
-            <option value="digital">デジタル</option>
-            <option value="hybrid" selected>
-                アナログ／デジタル
-            </option>
-        </select>
-
-        <!-- 色変更 -->
-        <h3>🎨 色変更</h3>
-
-        <label for="color-target">変更する項目：</label>
-
-        <select id="color-target">
-            <option value="background">背景</option>
-            <option value="text">文字</option>
-            <option value="clock">時計の表示窓</option>
-            <option value="timer">タイマー</option>
-            <option value="alarm">アラーム</option>
-            <option value="button">ボタン</option>
-        </select>
-
-        <input type="color" id="color-picker"
-               value="#000000">
-
-        <button id="color-apply">色を適用</button>
-
-    </div>
-</section>
-
 <!-- 時計表示エリア -->
 <div id="clock-display">
 
@@ -342,6 +297,49 @@
         天気情報を取得中...
     </div>
 </section>
+    <!-- ⚙️ 設定 -->
+<section id="settings">
+
+    <h2>⚙️ 設定</h2>
+
+    <button id="settings-items">
+        項目変更
+    </button>
+
+    <div id="settings-panel" hidden>
+
+        <!-- 時計の表示方式 -->
+        <h3>⌚ 時計の表示方式</h3>
+
+        <select id="clock-mode">
+            <option value="analog">アナログ</option>
+            <option value="digital">デジタル</option>
+            <option value="hybrid" selected>
+                アナログ／デジタル
+            </option>
+        </select>
+
+        <!-- 色変更 -->
+        <h3>🎨 色変更</h3>
+
+        <label for="color-target">変更する項目：</label>
+
+        <select id="color-target">
+            <option value="background">背景</option>
+            <option value="text">文字</option>
+            <option value="clock">時計の表示窓</option>
+            <option value="timer">タイマー</option>
+            <option value="alarm">アラーム</option>
+            <option value="button">ボタン</option>
+        </select>
+
+        <input type="color" id="color-picker"
+               value="#000000">
+
+        <button id="color-apply">色を適用</button>
+
+    </div>
+</section>
     <!-- =========================
          JavaScript
     ========================= -->
@@ -353,5 +351,6 @@
     <script src="js/alarm.js"></script>
     <script src="js/stopwatch.js"></script>
     <script src="js/weather.js"></script>
+    <script src="js/settings.js"></script>
 </body>
 </html>
