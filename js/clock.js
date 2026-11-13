@@ -1,30 +1,67 @@
-<!-- 時計の表示方式 -->
-<div id="clock-mode-selector">
-    <label for="clock-mode">時計の表示方式：</label>
-    <select id="clock-mode">
-        <option value="analog">アナログ</option>
-        <option value="hybrid">アナログ／デジタル</option>
-        <option value="digital" selected>デジタル</option>
-    </select>
-</div>
+// ==================================
+// ⏰ 時計の表示切り替え
+// ==================================
 
-<!-- 時計表示エリア -->
-<div id="clock-display">
+const clockMode = document.getElementById("clock-mode");
+const analogClock = document.getElementById("analog-clock");
+const digitalClock = document.getElementById("clock");
 
-    <!-- アナログ時計 -->
-    <div id="analog-clock" class="analog-clock">
-        <span class="clock-number number-12">12</span>
-        <span class="clock-number number-3">3</span>
-        <span class="clock-number number-6">6</span>
-        <span class="clock-number number-9">9</span>
+const hourHand = document.getElementById("hour-hand");
+const minuteHand = document.getElementById("minute-hand");
+const secondHand = document.getElementById("second-hand");
 
-        <div id="hour-hand" class="clock-hand hour-hand"></div>
-        <div id="minute-hand" class="clock-hand minute-hand"></div>
-        <div id="second-hand" class="clock-hand second-hand"></div>
-        <div class="clock-center"></div>
-    </div>
+// 表示方式を切り替える
+function changeClockMode() {
+    const mode = clockMode.value;
 
-    <!-- デジタル時計 -->
-    <div id="clock">00:00:00</div>
+    analogClock.style.display =
+        (mode === "analog" || mode === "hybrid")
+            ? "block" : "none";
 
-</div>
+    digitalClock.style.display =
+        (mode === "digital" || mode === "hybrid")
+            ? "block" : "none";
+}
+
+// 時計を更新する
+function updateClock() {
+    const now = new Date();
+
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    const milliseconds = now.getMilliseconds();
+
+    // デジタル表示
+    const time =
+        String(hours).padStart(2, "0") + ":" +
+        String(minutes).padStart(2, "0") + ":" +
+        String(seconds).padStart(2, "0");
+
+    digitalClock.textContent = time;
+
+    // アナログ表示
+    const smoothSeconds = seconds + milliseconds / 1000;
+    const secondAngle = smoothSeconds * 6;
+    const minuteAngle = (minutes + smoothSeconds / 60) * 6;
+    const hourAngle = ((hours % 12) + minutes / 60) * 30;
+
+    hourHand.style.transform =
+        `translateX(-50%) rotate(${hourAngle}deg)`;
+
+    minuteHand.style.transform =
+        `translateX(-50%) rotate(${minuteAngle}deg)`;
+
+    secondHand.style.transform =
+        `translateX(-50%) rotate(${secondAngle}deg)`;
+}
+
+// 選択欄の操作
+clockMode.addEventListener("change", changeClockMode);
+
+// 起動時
+changeClockMode();
+updateClock();
+
+// 針を滑らかに動かす
+setInterval(updateClock, 50);
