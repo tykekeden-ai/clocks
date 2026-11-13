@@ -1,17 +1,30 @@
-function updateClock() {
-    const now = new Date();
+<!-- 時計の表示方式 -->
+<div id="clock-mode-selector">
+    <label for="clock-mode">時計の表示方式：</label>
+    <select id="clock-mode">
+        <option value="analog">アナログ</option>
+        <option value="hybrid">アナログ／デジタル</option>
+        <option value="digital" selected>デジタル</option>
+    </select>
+</div>
 
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    const seconds = String(now.getSeconds()).padStart(2, "0");
+<!-- 時計表示エリア -->
+<div id="clock-display">
 
-    const time = `${hours}:${minutes}:${seconds}`;
+    <!-- アナログ時計 -->
+    <div id="analog-clock" class="analog-clock">
+        <span class="clock-number number-12">12</span>
+        <span class="clock-number number-3">3</span>
+        <span class="clock-number number-6">6</span>
+        <span class="clock-number number-9">9</span>
 
-    document.getElementById("clock").textContent = time;
-}
+        <div id="hour-hand" class="clock-hand hour-hand"></div>
+        <div id="minute-hand" class="clock-hand minute-hand"></div>
+        <div id="second-hand" class="clock-hand second-hand"></div>
+        <div class="clock-center"></div>
+    </div>
 
-// 1秒ごとに更新
-setInterval(updateClock, 1000);
+    <!-- デジタル時計 -->
+    <div id="clock">00:00:00</div>
 
-// ページを開いた瞬間にも表示
-updateClock();
+</div>
